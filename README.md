@@ -1,18 +1,20 @@
 # LTIPlugin
+
 LimeSurvey Plugin that allows LimeSurvey to act as an LTI provider for tools such as Moodle, Canvas and openEdX. LimeSurvey will have access to the LMS course name and course and student identifier and allow the completion of a survey.
 This plugin can also be used to return a grade/score/result back to the LMS based on a LimeSurvey expression. Therefore this plugin can be used to administer an exam or quiz in LimeSurvey which calculates a score and returns it automatically to the LMS.
 
 ## Installation
 
 Download the zip from the [releases](https://github.com/adamzammit/LTIPlugin/releases) page and extract to your plugins folder. You can also clone directly from git: go to your plugins directory and type
+
 ```
 git clone --recursive https://github.com/adamzammit/LTIPlugin.git LTIPlugin
 ```
 
 ## Requirements
 
-- LimeSurvey version 3.x, 4.x, 5.x
-- Surveys need to be activated, with a participant table set up with at least 4 attributes avaiable, 6 attributes if you want to return a grade/result (the plugin will use the first 4 or 6 attributes for LTI related data)
+- LimeSurvey version 3.x, 4.x, 5.x, 6.x, 7.x
+- Surveys need to be activated, with a participant table set up with at least 4 attributes avaiable, 7 attributes if you want to return a grade/result (the plugin will use the first 4 or 7 attributes for LTI related data)
 - If your LTI Provider is running on HTTPS, then LimeSurvey must run over HTTPS also
 
 ## Configuration (LimeSurvey)
@@ -35,12 +37,13 @@ Note: See the included file "example-survey-return-assessment-value.lss" to see 
 ### Configuration and usage (Canvas)
 
 1. Edit your course
-2. In your course, visit "Settings" then the tab "Apps", then "View App Configurations", then click on the green "+_App" button
+2. In your course, visit "Settings" then the tab "Apps", then "View App Configurations", then click on the green "+\_App" button
 3. Choose "Manual entry" for your configuration type
 4. Name the app
 5. Copy the consumer key, secret and Launch URL from the LimeSurvey LTIPlugin settings page (under Simple plugins in your LimeSurvey survey)
 
 Now that the application is configured, you can:
+
 1. Add a new item to a module in your course, and choose "External Tool" then the name of your app and don't forget to "publish"
 2. If you add as an "Assignment" and you have the return result set in LimeSurvey simple plugin settings, the score will be returned
 
@@ -55,21 +58,23 @@ If you have recieved a "CSRF Token" error in LimeSurvey you may need to check th
 5. The "Consumer key" is the key that appears on the LTI plugin settings page
 6. The "Shared secret" is the secret that appears on the LTI plugin settings page
 
-
 ### Configuration (OpenEdX)
 
 1. Edit your course in OpenEdX "Studio"
 2. In your course, visit "Settings" then "Advanced Settings"
 3. Ensure "Advanced Module List" contains:
+
 ```
     ["lti_consumer"]
 ```
+
 4. Ensure "LTI Passports" contains:
+
 ```
     ["limesurvey:KEY:SECRET"]
 ```
-   (Where KEY and SECRET are replaced with the key and secret generated in the configuration step above - this will also be able to be copied and pasted from the LTIPlugin settings in LimeSurvey)
-5. Save the Advanced Settings
+
+(Where KEY and SECRET are replaced with the key and secret generated in the configuration step above - this will also be able to be copied and pasted from the LTIPlugin settings in LimeSurvey) 5. Save the Advanced Settings
 
 If you have recieved a "CSRF Token" error in LimeSurvey you may need to set "LTI Launch Target" to "New Window" in OpenEdX to overcome this.
 
@@ -81,9 +86,11 @@ If you have recieved a "CSRF Token" error in LimeSurvey you may need to set "LTI
 4. Click on "Edit"
 5. Enter a display name - this can be anything you choose
 6. The "LTI ID" should be:
+
 ```
     limesurvey
 ```
+
 7. The "LTI URL" is the URL that appears on the "Settings for plugin LTI Plugin" page for your survey
 8. Other settings can remain as default
 9. Click "Save" and you will now be able to access LimeSurvey from within
